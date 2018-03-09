@@ -1,8 +1,5 @@
-os: 
-  - linux
-  
-sudo: required
-dist: trusty
+sudo: true
+dist: xenial
 language: generic
 compiler:
   - clang
