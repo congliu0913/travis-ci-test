@@ -1,6 +1,3 @@
-os: linux
-  - ubuntu: 16.04
-  
 sudo: required
 dist: xenial
 language: generic
