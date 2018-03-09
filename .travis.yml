@@ -29,8 +29,7 @@ before_install:
   - cmake ../
   - sudo make uninstall && make clean && make && sudo make install
   - mkdir -p /etc/udev/rules.d/
-  - cd ../
-  - sudo cp config/99-realsense-libusb.rules /etc/udev/rules.d/
+  - sudo cp ../config/99-realsense-libusb.rules /etc/udev/rules.d/
   - sudo udevadm control --reload-rules && udevadm trigger
   - sudo apt-get install libssl-dev
   
