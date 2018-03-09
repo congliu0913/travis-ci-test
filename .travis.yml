@@ -13,7 +13,7 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libtinyxml-dev
   - sudo apt-get install -y python
-  - 'sudo docker build --no-cache --rm --file=docker/Dockerfile'
+  - 'sudo docker build --no-cache -t travis:ubuntu1604 --file=docker/Dockerfile'
 matrix:
   allow_failures:
     - compiler: clang
