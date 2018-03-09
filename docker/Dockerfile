@@ -14,8 +14,6 @@ MAINTAINER Liu Cong "congx.liu@intel.com"
 # Copy blackduck client to container
 # Set proxy
 
-ADD ros-latest.list /etc/apt/sources.list.d/ros-latest.list
-RUN apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-key 0xB01FA116
 # Install third party tools and dependence
 RUN apt-get update
 RUN apt-get upgrade -y
@@ -27,7 +25,6 @@ RUN apt-get install -y sudo \
 	python3 \
 	python-pip \
 	python3-pip 
-RUN apt-get install -y python-vcstool
 WORKDIR /tmp/
 ################### END INSTALLATION ###################
 #Create user 'robot' for login IP scan server https://scipscn03.intel.com
