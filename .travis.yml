@@ -7,7 +7,7 @@ compiler:
 
 before_install:
 # install ros2_openvino_toolkit deps
-  - sudo clone https://github.com/congliu0913/ros2_openvino_toolkit -b devel
+  - git clone https://github.com/congliu0913/ros2_openvino_toolkit -b devel
   - src/ros2_openvino_toolkit/script/environment_setup_binary.sh
 matrix:
   allow_failures:
