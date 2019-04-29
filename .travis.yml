@@ -8,7 +8,7 @@ compiler:
 before_install:
 # install ros2_openvino_toolkit deps
   - git clone https://github.com/congliu0913/ros2_openvino_toolkit -b devel
-  - sed '4,7d' ros2_openvino_toolkit/script/environment_setup_binary.sh
+  - sed -i '4,7d' ros2_openvino_toolkit/script/environment_setup_binary.sh
   - cat ros2_openvino_toolkit/script/environment_setup_binary.sh
   - ./ros2_openvino_toolkit/script/environment_setup_binary.sh
 matrix:
