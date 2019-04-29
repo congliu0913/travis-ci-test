@@ -11,7 +11,7 @@ before_install:
   - sed -i '4,7d' ros2_openvino_toolkit/script/environment_setup_binary.sh
   - cat ros2_openvino_toolkit/script/environment_setup_binary.sh
   - cd ros2_openvino_toolkit/script/
-  - ./ros2_openvino_toolkit/script/environment_setup_binary.sh
+  - ./environment_setup_binary.sh
 matrix:
   allow_failures:
     - compiler: clang
