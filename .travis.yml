@@ -11,6 +11,7 @@ before_install:
   - sed -i '4,7d' ros2_openvino_toolkit/script/environment_setup_binary.sh
   - cat ros2_openvino_toolkit/script/environment_setup_binary.sh
   - cd ros2_openvino_toolkit/script/
+  - sed -i 's/clean=1/clean=0/' modules.conf
   - ./environment_setup_binary.sh
 matrix:
   allow_failures:
