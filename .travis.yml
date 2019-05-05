@@ -10,12 +10,14 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libtinyxml-dev
   - sudo apt-get install -y python
-  - travis_wait 45 docker build --file=docker/Dockerfile --tag=ubuntu1804/ros2:ros2_openvino_toolkit docker
+  - travis_wait 90 docker build --file=docker/Dockerfile --tag=ubuntu1804/ros2:ros2_openvino_toolkit docker
   - ci_env=`bash <(curl -s https://codecov.io/env)`
   - docker run --rm --detach --name openvino_bash ubuntu1804/ros2:ros2_openvino_toolkit
     sleep infinity
   - docker exec --interactive --tty openvino_bash /ros_entrypoint.sh
     scripts/build_test.sh
+  - docker exec --interactive --tty openvino_bash /ros_entrypoint.sh
+    scripts/codecov_lcov.bash
 matrix:
   allow_failures:
     - compiler: clang

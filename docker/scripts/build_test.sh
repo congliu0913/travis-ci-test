@@ -15,4 +15,5 @@ export GFLAGS_LIB=/opt/intel/computer_vision_sdk/deployment_tools/inference_engi
 colcon build --symlink-install --cmake-args  -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE_ENABLED=True
 
 # test
+source install/local_setup.bash
 colcon test --base-paths src/ros2_openvino_toolkit
