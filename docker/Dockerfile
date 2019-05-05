@@ -12,6 +12,7 @@ RUN if [ "$http_proxy" != "" ]; \
       --keyserver-options http-proxy=$http_proxy \
       --recv-keys 421C365BD9FF1F717815A3895523BAEEB01FA116; \
     fi
+
 #setup OPENVINO
 RUN echo "===================Installing OpenVINO Toolkit...======================="
 RUN wget -c -q http://registrationcenter-download.intel.com/akdlm/irc_nas/15078/l_openvino_toolkit_p_2018.5.455.tgz
@@ -25,19 +26,6 @@ RUN apt-get install -y libpng-dev cpio
 RUN sed -i 's/ACCEPT_EULA=decline/ACCEPT_EULA=accept/' silent.cfg
 RUN ./install.sh --silent silent.cfg
 RUN echo "==== END install OpenVINO Toolkit ===="
-
-# install librealsense
-RUN apt-get install -y git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev libglfw3-dev
-WORKDIR /home/robot/code
-RUN git clone https://github.com/IntelRealSense/librealsense.git -b v2.17.1
-WORKDIR /home/robot/code/librealsense
-RUN mkdir build &&cd build
-WORKDIR /home/robot/code/librealsense/build
-RUN cmake ../ -DBUILD_EXAMPLES=true
-RUN make uninstall && make clean && make -j12 && make install
-RUN mkdir -p /etc/udev/rules.d
-RUN cd ../ && cp config/99-realsense-libusb.rules /etc/udev/rules.d/
-RUN ldconfig
 
 # install opencv
 #RUN add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
@@ -54,6 +42,19 @@ RUN mkdir build
 WORKDIR /home/robot/code/opencv/build
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=/home/robot/code/opencv_contrib/modules/ .. && make -j12
 RUN make install
+
+# install librealsense
+RUN apt-get install -y git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev libglfw3-dev
+WORKDIR /home/robot/code
+RUN git clone https://github.com/IntelRealSense/librealsense.git -b v2.17.1
+WORKDIR /home/robot/code/librealsense
+RUN mkdir build &&cd build
+WORKDIR /home/robot/code/librealsense/build
+RUN cmake ../ -DBUILD_EXAMPLES=true
+RUN make uninstall && make clean && make -j12 && make install
+RUN mkdir -p /etc/udev/rules.d
+RUN cd ../ && cp config/99-realsense-libusb.rules /etc/udev/rules.d/
+RUN ldconfig
 
 # install opencl
 WORKDIR /tmp
