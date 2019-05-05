@@ -4,16 +4,18 @@ language: generic
 compiler:
   - clang
   - gcc
-
+services:
+  - docker
 before_install:
-# install ros2_openvino_toolkit deps
-  - git clone https://github.com/congliu0913/ros2_openvino_toolkit -b devel
-  - sed -i '4,7d' ros2_openvino_toolkit/script/environment_setup_binary.sh
-  - sed -i 's/echo $ROOT_PASSWD |/ /g' ros2_openvino_toolkit/script/environment_setup_binary.sh
-  - cat ros2_openvino_toolkit/script/environment_setup_binary.sh
-  - cd ros2_openvino_toolkit/script/
-  - sed -i 's/clean=1/clean=0/' modules.conf
-  - ./environment_setup_binary.sh
+  - apt-get update -qq
+  - apt-get install -qq libtinyxml-dev
+  - apt-get install -y python
+  - docker build --no-cache  --rm --file=docker/Dockerfile --tag=ubuntu1804/ros2:ros2_openvino_toolkit
+  - ci_env=`bash <(curl -s https://codecov.io/env)`
+  - docker run --rm --detach --name openvino_bash ubuntu1804/ros2:ros2_openvino_toolkit
+    sleep infinity
+  - docker exec --interactive --tty openvino_bash /ros_entrypoint.sh
+    scripts/build_test.sh
 matrix:
   allow_failures:
     - compiler: clang
