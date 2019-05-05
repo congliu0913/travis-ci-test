@@ -10,7 +10,7 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libtinyxml-dev
   - sudo apt-get install -y python
-  - sudo docker build --no-cache  --rm --file=docker/Dockerfile --tag=ubuntu1804/ros2:ros2_openvino_toolkit
+  - docker build --no-cache  --rm --file=docker/Dockerfile --tag=ubuntu1804/ros2:ros2_openvino_toolkit
   - ci_env=`bash <(curl -s https://codecov.io/env)`
   - docker run --rm --detach --name openvino_bash ubuntu1804/ros2:ros2_openvino_toolkit
     sleep infinity
