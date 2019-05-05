@@ -14,7 +14,7 @@ RUN if [ "$http_proxy" != "" ]; \
     fi
 #setup OPENVINO
 RUN echo "===================Installing OpenVINO Toolkit...======================="
-RUN wget -c http://registrationcenter-download.intel.com/akdlm/irc_nas/15078/l_openvino_toolkit_p_2018.5.455.tgz
+RUN wget -c http://registrationcenter-download.intel.com/akdlm/irc_nas/15078/l_openvino_toolkit_p_2018.5.455.tgz >/dev/null
 RUN tar -xvf l_openvino_toolkit_p_2018.5.455.tgz
 WORKDIR l_openvino_toolkit_p_2018.5.455
 RUN pwd && ls -lha && cat install_cv_sdk_dependencies.sh
@@ -57,7 +57,7 @@ RUN make install
 
 # install opencl
 WORKDIR /tmp
-RUN wget http://registrationcenter-download.intel.com/akdlm/irc_nas/11396/SRB5.0_linux64.zip
+RUN wget http://registrationcenter-download.intel.com/akdlm/irc_nas/11396/SRB5.0_linux64.zip >/dev/null
 RUN apt-get install -y zip
 RUN unzip SRB5.0_linux64.zip -d SRB5.0_linux64
 WORKDIR /tmp/SRB5.0_linux64
