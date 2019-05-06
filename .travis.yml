@@ -10,7 +10,9 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libtinyxml-dev
   - sudo apt-get install -y python
-  - travis_retry travis_wait 90 docker build --file=docker/Dockerfile --tag=ubuntu1804/ros2:ros2_openvino_toolkit docker
+  - cd docker 
+  - travis_wait wget -c -q http://registrationcenter-download.intel.com/akdlm/irc_nas/15078/l_openvino_toolkit_p_2018.5.455.tgz && cd ..
+  - docker build --file=docker/Dockerfile --tag=ubuntu1804/ros2:ros2_openvino_toolkit docker
   - ci_env=`bash <(curl -s https://codecov.io/env)`
   - docker run --rm --detach --name openvino_bash ubuntu1804/ros2:ros2_openvino_toolkit
     sleep infinity

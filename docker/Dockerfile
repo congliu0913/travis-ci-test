@@ -15,7 +15,8 @@ RUN if [ "$http_proxy" != "" ]; \
 
 #setup OPENVINO
 RUN echo "===================Installing OpenVINO Toolkit...======================="
-RUN wget -c -q http://registrationcenter-download.intel.com/akdlm/irc_nas/15078/l_openvino_toolkit_p_2018.5.455.tgz
+#RUN wget -c -q http://registrationcenter-download.intel.com/akdlm/irc_nas/15078/l_openvino_toolkit_p_2018.5.455.tgz
+COPY l_openvino_toolkit_p_2018.5.455.tgz ./
 RUN tar -xvf l_openvino_toolkit_p_2018.5.455.tgz
 WORKDIR l_openvino_toolkit_p_2018.5.455
 RUN pwd && ls -lha && cat install_cv_sdk_dependencies.sh
