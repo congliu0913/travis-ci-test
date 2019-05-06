@@ -41,7 +41,8 @@ RUN git clone https://github.com/opencv/opencv_contrib.git -b 3.4.2
 WORKDIR /home/robot/code/opencv
 RUN mkdir build
 WORKDIR /home/robot/code/opencv/build
-RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=/home/robot/code/opencv_contrib/modules/ .. && make -j12
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=/home/robot/code/opencv_contrib/modules/ .. 
+RUN make -j8
 RUN make install
 
 # install librealsense
