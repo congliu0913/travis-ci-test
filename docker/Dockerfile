@@ -53,7 +53,7 @@ WORKDIR /home/robot/code/librealsense
 RUN mkdir build &&cd build
 WORKDIR /home/robot/code/librealsense/build
 RUN cmake ../ -DBUILD_EXAMPLES=true
-RUN make uninstall && make clean && make -j12 && make install
+RUN make uninstall && make clean && make -j8 && make install
 RUN mkdir -p /etc/udev/rules.d
 RUN cd ../ && cp config/99-realsense-libusb.rules /etc/udev/rules.d/
 RUN ldconfig
