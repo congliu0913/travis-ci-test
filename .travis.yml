@@ -10,6 +10,7 @@ before_install:
   - sudo locale-gen en_US en_US.UTF-8
   - sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
   - export LANG=en_US.UTF-8
+  - wget http://registrationcenter-download.intel.com/akdlm/irc_nas/15078/l_openvino_toolkit_p_2018.5.455.tgz 
   - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list'
   - sudo apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 421C365BD9FF1F717815A3895523BAEEB01FA116
   - sudo apt update
