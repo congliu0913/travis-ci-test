@@ -29,6 +29,9 @@ jobs:
         echo test, and deploy your project.
     - name: Setup ROS environment
       uses: ros-tooling/setup-ros@0.0.20
-      with: dashing
-      run: |
+      with:
+        required-ros-distributions: dashing
+    - run: |
+        ls /opt/ros
+        source /opt/ros/dashing/setup.sh
         ros2 topic list
