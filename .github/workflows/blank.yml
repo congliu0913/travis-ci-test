@@ -26,4 +26,4 @@ jobs:
     - name: build ros2 grasp library
       uses: docker://congliu0913/ros2_grasp_library:ros2_grasp_library_deps
       with:
-        args: ls /github/workspace/script/
+        args: bash /github/workspace/script/ci_build_ros2_grasp_library.sh
