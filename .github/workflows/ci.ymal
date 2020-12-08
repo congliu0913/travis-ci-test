@@ -1,5 +1,11 @@
 name: Greeting from Cong
-on: push
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ action-test ]
+  pull_request:
+    branches: [ action-test ]
 
 jobs:
   my-job:
